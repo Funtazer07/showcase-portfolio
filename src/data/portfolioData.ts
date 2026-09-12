@@ -9,6 +9,30 @@ export interface SiteMeta {
   techStackHeading: string
   repoLinkLabel: string
   demoLinkLabel: string
+  cvUrl: string
+  cvLabel: string
+  searchLabel: string
+  searchShortcut: string
+  sidebarCopyright: string
+}
+
+export interface SocialLink {
+  label: string
+  href: string
+}
+
+export interface SocialLinks {
+  github: SocialLink
+  linkedin: SocialLink
+}
+
+export interface HeroContent {
+  eyebrow: string
+  terminalLine: string
+  title: string
+  bio: string
+  primaryCtaLabel: string
+  secondaryCtaLabel: string
 }
 
 export type TechCategory = 'language' | 'framework' | 'tooling-ui'
@@ -35,6 +59,25 @@ export const siteMeta: SiteMeta = {
   techStackHeading: 'Tech Stack',
   repoLinkLabel: '$ source',
   demoLinkLabel: '$ live',
+  cvUrl: '/resume.pdf',
+  cvLabel: 'Resume',
+  searchLabel: 'Search',
+  searchShortcut: '⌘K',
+  sidebarCopyright: '© 2026 Andrejs Dvoskins',
+}
+
+export const socialLinks: SocialLinks = {
+  github: { label: 'GitHub', href: 'https://github.com/Funtazer07' },
+  linkedin: { label: 'LinkedIn', href: 'https://linkedin.com/in/andrejsdvoskins/' },
+}
+
+export const heroContent: HeroContent = {
+  eyebrow: '"QUIET BUILDER"',
+  terminalLine: '$ whoami → frontend developer',
+  title: "Hi, I'm Andrejs Dvoskins",
+  bio: 'Frontend Developer with the discipline of a World Karate Champion — building fast, type-safe, accessible interfaces with the same precision and complete follow-through I learned on the mat.',
+  primaryCtaLabel: 'View Projects',
+  secondaryCtaLabel: 'Get in Touch',
 }
 
 export const navItems: NavItem[] = [
