@@ -48,6 +48,8 @@ export interface Project {
   description: string
   /** Names matching `TechStackItem.name` entries in `techStack`, or a project-specific tag. */
   techStack: string[]
+  /** Specific engineering solutions worth calling out (state optimization, type safety, test coverage, etc.). */
+  highlights: string[]
   repoUrl: string
   demoUrl: string
   featured?: boolean
@@ -104,6 +106,11 @@ export const projects: Project[] = [
     description:
       'Rebuilt a legacy checkout flow into a fast, accessible React application, cutting cart abandonment.',
     techStack: ['React', 'TypeScript', 'Stripe'],
+    highlights: [
+      'Memoized cart state and colocated Stripe Elements to cut checkout re-renders',
+      'Modeled checkout steps with discriminated unions for full type safety end to end',
+      'Covered critical checkout paths with Testing Library integration tests',
+    ],
     repoUrl: 'https://github.com/Funtazer07/TODO-ecommerce-platform-redesign',
     demoUrl: 'https://TODO-ecommerce-platform-redesign.example.com',
     featured: true,
@@ -114,6 +121,11 @@ export const projects: Project[] = [
     description:
       'Real-time metrics dashboard with customizable widgets for usage, retention, and revenue data.',
     techStack: ['Next.js', 'TanStack Query', 'Tailwind'],
+    highlights: [
+      'Cached and deduped dashboard queries with TanStack Query to cut redundant API calls',
+      'Typed every widget config end to end, catching invalid chart props at compile time',
+      'Unit tested the data transforms powering each widget',
+    ],
     repoUrl: 'https://github.com/Funtazer07/TODO-saas-analytics-dashboard',
     demoUrl: 'https://TODO-saas-analytics-dashboard.example.com',
     featured: true,
