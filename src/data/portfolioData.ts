@@ -35,6 +35,26 @@ export interface HeroContent {
   secondaryCtaLabel: string
 }
 
+export interface AboutContent {
+  heading: string
+  bio: string
+  tags: string[]
+  codeLabel: string
+  code: string
+}
+
+export interface ContactContent {
+  heading: string
+  subheading: string
+  email: string
+  copyEmailLabel: string
+  copiedTitle: string
+  copiedDescription: string
+  copyErrorTitle: string
+  copyErrorDescription: string
+  copyright: string
+}
+
 export type TechCategory = 'language' | 'framework' | 'tooling-ui'
 
 export interface TechStackItem {
@@ -86,6 +106,32 @@ export const heroContent: HeroContent = {
   bio: 'Frontend Developer with the discipline of a World Karate Champion — building fast, type-safe, accessible interfaces with the same precision and complete follow-through I learned on the mat.',
   primaryCtaLabel: 'View Projects',
   secondaryCtaLabel: 'Get in Touch',
+}
+
+export const aboutContent: AboutContent = {
+  heading: 'About Me',
+  bio: 'I approach frontend development as a Quiet Builder — prioritizing functional utility, architectural stability, and clarity over visual noise. My background as a World Karate Champion built the discipline, strict time management, and habit of bringing every project to a complete state that now shapes how I ship software: useful, clear, and complete.',
+  tags: ['Useful', 'Clear', 'Complete'],
+  codeLabel: 'about.ts',
+  code: `const developer = {
+  name: 'Andrejs Dvoskins',
+  role: 'Frontend Developer',
+  focus: ['Type Safety', 'Performance', 'UX'],
+  mindset: 'Quiet Builder',
+  building: 'Reliable products that solve real problems.',
+};`,
+}
+
+export const contactContent: ContactContent = {
+  heading: 'Say hello',
+  subheading: 'Open to frontend opportunities — reach out any time.',
+  email: 'hello@andrejsdvoskins.dev',
+  copyEmailLabel: 'Copy email',
+  copiedTitle: 'Email copied',
+  copiedDescription: 'hello@andrejsdvoskins.dev is on your clipboard.',
+  copyErrorTitle: 'Could not copy email',
+  copyErrorDescription: 'Copy hello@andrejsdvoskins.dev manually instead.',
+  copyright: '© 2026 Andrejs Dvoskins. All rights reserved.',
 }
 
 export const navItems: NavItem[] = [
