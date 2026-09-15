@@ -42,6 +42,12 @@ export interface TechStackItem {
   category: TechCategory
 }
 
+export const techCategoryLabels: Record<TechCategory, string> = {
+  language: 'Languages',
+  framework: 'Frameworks',
+  'tooling-ui': 'Tooling & UI',
+}
+
 export interface Project {
   id: string
   title: string
