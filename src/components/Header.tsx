@@ -2,7 +2,11 @@ import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { navItems, siteMeta } from '@/data/portfolioData'
 
-function Header() {
+interface HeaderProps {
+  onSearchClick: () => void
+}
+
+function Header({ onSearchClick }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
@@ -21,6 +25,7 @@ function Header() {
         <div className="flex items-center gap-2">
           <button
             type="button"
+            onClick={onSearchClick}
             className="hidden items-center gap-2 rounded-md border border-border px-3 py-1.5 text-sm text-muted-foreground sm:flex"
           >
             <Search className="size-4" />

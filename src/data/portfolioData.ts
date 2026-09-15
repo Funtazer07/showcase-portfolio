@@ -55,6 +55,19 @@ export interface ContactContent {
   copyright: string
 }
 
+export interface CommandMenuContent {
+  title: string
+  description: string
+  placeholder: string
+  emptyLabel: string
+  navigateGroupLabel: string
+  actionsGroupLabel: string
+  viewResumeLabel: string
+  copyEmailLabel: string
+  openGithubLabel: string
+  openLinkedinLabel: string
+}
+
 export type TechCategory = 'language' | 'framework' | 'tooling-ui'
 
 export interface TechStackItem {
@@ -92,6 +105,19 @@ export const siteMeta: SiteMeta = {
   searchLabel: 'Search',
   searchShortcut: '⌘K',
   sidebarCopyright: '© 2026 Andrejs Dvoskins',
+}
+
+export const commandMenuContent: CommandMenuContent = {
+  title: 'Command Menu',
+  description: 'Search for a page or action to run.',
+  placeholder: 'search or run a command',
+  emptyLabel: 'No results found.',
+  navigateGroupLabel: '// navigate',
+  actionsGroupLabel: '// actions',
+  viewResumeLabel: 'View résumé',
+  copyEmailLabel: 'Copy email address',
+  openGithubLabel: 'Open GitHub profile',
+  openLinkedinLabel: 'Open LinkedIn profile',
 }
 
 export const socialLinks: SocialLinks = {
