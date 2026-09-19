@@ -29,7 +29,8 @@ export interface SocialLinks {
 export interface HeroContent {
   eyebrow: string
   terminalLine: string
-  title: string
+  titlePrefix: string
+  name: string
   bio: string
   primaryCtaLabel: string
   secondaryCtaLabel: string
@@ -130,7 +131,8 @@ export const socialLinks: SocialLinks = {
 export const heroContent: HeroContent = {
   eyebrow: '"QUIET BUILDER"',
   terminalLine: '$ whoami → frontend developer',
-  title: "Hi, I'm Andrejs Dvoskins",
+  titlePrefix: "Hi, I'm ",
+  name: 'Andrejs Dvoskins',
   bio: 'Frontend Developer with the discipline of a World Karate Champion — building fast, type-safe, accessible interfaces with the same precision and complete follow-through I learned on the mat.',
   primaryCtaLabel: 'View Projects',
   secondaryCtaLabel: 'Get in Touch',

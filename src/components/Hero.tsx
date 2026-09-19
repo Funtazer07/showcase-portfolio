@@ -1,5 +1,6 @@
 import { Code2, Link2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import TypedName from '@/components/TypedName'
 import { heroContent, socialLinks } from '@/data/portfolioData'
 
 function Hero() {
@@ -13,8 +14,14 @@ function Hero() {
           <p className="font-mono text-base text-muted-foreground">
             {heroContent.terminalLine}
           </p>
-          <h1 className="max-w-2xl text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
-            {heroContent.title}
+          <h1
+            className="max-w-2xl text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl"
+            aria-label={`${heroContent.titlePrefix}${heroContent.name}`}
+          >
+            <span aria-hidden="true">
+              {heroContent.titlePrefix}
+              <TypedName text={heroContent.name} />
+            </span>
           </h1>
           <p className="max-w-xl text-lg text-muted-foreground">{heroContent.bio}</p>
 
