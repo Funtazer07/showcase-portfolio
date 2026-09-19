@@ -1,32 +1,43 @@
 import { useEffect, useState } from 'react'
 import type { NavItem } from '@/data/portfolioData'
 
+/** Distance from the top of the viewport treated as the "current section" line. */
+const ACTIVATION_OFFSET = 100
+
 export function useActiveSection(items: NavItem[]): string {
   const [activeHref, setActiveHref] = useState(items[0]?.href ?? '')
 
   useEffect(() => {
     const sections = items
-      .map((item) => document.getElementById(item.href.slice(1)))
-      .filter((el): el is HTMLElement => el !== null)
+      .map((item) => ({ href: item.href, el: document.getElementById(item.href.slice(1)) }))
+      .filter((section): section is { href: string; el: HTMLElement } => section.el !== null)
 
     if (sections.length === 0) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-
-        if (visible[0]) {
-          setActiveHref(`#${visible[0].target.id}`)
+    function updateActiveSection() {
+      let current = sections[0].href
+      for (const section of sections) {
+        if (section.el.getBoundingClientRect().top <= ACTIVATION_OFFSET) {
+          current = section.href
         }
-      },
-      { rootMargin: '-45% 0px -50% 0px' }
-    )
+      }
+      setActiveHref(current)
+    }
 
-    sections.forEach((section) => observer.observe(section))
+    updateActiveSection()
 
-    return () => observer.disconnect()
+    let ticking = false
+    function onScroll() {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        updateActiveSection()
+        ticking = false
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [items])
 
   return activeHref
