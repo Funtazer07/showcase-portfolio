@@ -2,30 +2,10 @@ import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
 import { toast } from '@/components/ui/toast'
 import { contactContent, socialLinks } from '@/data/portfolioData'
+import { copyToClipboard } from '@/lib/clipboard'
 
 function Footer() {
   const [copied, setCopied] = useState(false)
-
-  async function copyToClipboard(text: string) {
-    if (navigator.clipboard?.writeText) {
-      try {
-        await navigator.clipboard.writeText(text)
-        return true
-      } catch {
-        // fall through to the legacy fallback below
-      }
-    }
-
-    const textarea = document.createElement('textarea')
-    textarea.value = text
-    textarea.style.position = 'fixed'
-    textarea.style.opacity = '0'
-    document.body.appendChild(textarea)
-    textarea.select()
-    const succeeded = document.execCommand('copy')
-    document.body.removeChild(textarea)
-    return succeeded
-  }
 
   async function handleCopyEmail() {
     const succeeded = await copyToClipboard(contactContent.email)

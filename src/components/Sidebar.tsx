@@ -1,12 +1,15 @@
 import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { navItems, siteMeta, socialLinks } from '@/data/portfolioData'
+import { getShortcutLabel } from '@/lib/platform'
 
 interface SidebarProps {
   onSearchClick: () => void
 }
 
 function Sidebar({ onSearchClick }: SidebarProps) {
+  const shortcutLabel = getShortcutLabel(siteMeta.searchShortcut)
+
   return (
     <aside className="fixed inset-y-0 left-0 hidden w-[220px] flex-col justify-between border-r border-border p-8 lg:flex">
       <div className="flex flex-col gap-8">
@@ -25,12 +28,13 @@ function Sidebar({ onSearchClick }: SidebarProps) {
         <button
           type="button"
           onClick={onSearchClick}
+          aria-label={`${siteMeta.searchLabel} (${shortcutLabel})`}
           className="flex items-center gap-2 rounded-md border border-border px-3 py-1.5 text-sm text-muted-foreground"
         >
           <Search className="size-4" />
           {siteMeta.searchLabel}
           <kbd className="ml-auto rounded border border-border px-1.5 py-0.5 font-sans text-xs">
-            {siteMeta.searchShortcut}
+            {shortcutLabel}
           </kbd>
         </button>
 

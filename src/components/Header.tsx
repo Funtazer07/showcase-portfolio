@@ -1,12 +1,15 @@
 import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { navItems, siteMeta } from '@/data/portfolioData'
+import { getShortcutLabel } from '@/lib/platform'
 
 interface HeaderProps {
   onSearchClick: () => void
 }
 
 function Header({ onSearchClick }: HeaderProps) {
+  const shortcutLabel = getShortcutLabel(siteMeta.searchShortcut)
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
@@ -26,12 +29,13 @@ function Header({ onSearchClick }: HeaderProps) {
           <button
             type="button"
             onClick={onSearchClick}
-            className="hidden items-center gap-2 rounded-md border border-border px-3 py-1.5 text-sm text-muted-foreground sm:flex"
+            aria-label={`${siteMeta.searchLabel} (${shortcutLabel})`}
+            className="flex items-center gap-2 rounded-md border border-border px-2.5 py-1.5 text-sm text-muted-foreground sm:px-3"
           >
             <Search className="size-4" />
-            {siteMeta.searchLabel}
-            <kbd className="rounded border border-border px-1.5 py-0.5 font-sans text-xs">
-              {siteMeta.searchShortcut}
+            <span className="hidden sm:inline">{siteMeta.searchLabel}</span>
+            <kbd className="hidden rounded border border-border px-1.5 py-0.5 font-sans text-xs sm:inline-block">
+              {shortcutLabel}
             </kbd>
           </button>
           <Button size="sm" render={<a href={siteMeta.cvUrl} target="_blank" rel="noreferrer" />}>

@@ -103,7 +103,7 @@ export const siteMeta: SiteMeta = {
   cvUrl: '/resume.pdf',
   cvLabel: 'Resume',
   searchLabel: 'Search',
-  searchShortcut: '⌘K',
+  searchShortcut: 'Ctrl K',
   sidebarCopyright: '© 2026 Andrejs Dvoskins',
 }
 

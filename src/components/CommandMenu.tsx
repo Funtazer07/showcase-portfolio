@@ -8,7 +8,9 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command'
+import { toast } from '@/components/ui/toast'
 import { commandMenuContent, contactContent, navItems, siteMeta, socialLinks } from '@/data/portfolioData'
+import { copyToClipboard } from '@/lib/clipboard'
 
 const navIcons = [House, FolderKanban, Layers, UserRound]
 
@@ -62,8 +64,21 @@ function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
               {commandMenuContent.viewResumeLabel}
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => {
-                navigator.clipboard?.writeText(contactContent.email)
+              onSelect={() => runCommand(async () => {
+                const succeeded = await copyToClipboard(contactContent.email)
+                toast.add(
+                  succeeded
+                    ? {
+                        title: contactContent.copiedTitle,
+                        description: contactContent.copiedDescription,
+                        type: 'success',
+                      }
+                    : {
+                        title: contactContent.copyErrorTitle,
+                        description: contactContent.copyErrorDescription,
+                        type: 'error',
+                      }
+                )
               })}
             >
               <Mail />
