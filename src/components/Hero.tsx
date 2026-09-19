@@ -8,7 +8,7 @@ function Hero() {
       id="home"
       className="flex scroll-mt-20 flex-col items-center gap-6 px-6 py-24 text-center sm:py-32"
     >
-      <span className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
+      <span className="rounded-full bg-accent px-3 py-1.5 text-xs font-semibold tracking-widest text-accent-foreground uppercase">
         {heroContent.eyebrow}
       </span>
       <p className="font-mono text-sm text-muted-foreground">

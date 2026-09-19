@@ -21,7 +21,7 @@ function FeaturedProjects() {
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-accent-foreground"
+                  className="rounded bg-accent px-2.5 py-1 font-mono text-xs font-medium text-accent-foreground"
                 >
                   {tech}
                 </span>
