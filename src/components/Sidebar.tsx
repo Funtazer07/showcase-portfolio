@@ -2,6 +2,7 @@ import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { navItems, siteMeta, socialLinks } from '@/data/portfolioData'
 import { getShortcutLabel } from '@/lib/platform'
+import { useActiveSection } from '@/lib/useActiveSection'
 
 interface SidebarProps {
   onSearchClick: () => void
@@ -9,6 +10,7 @@ interface SidebarProps {
 
 function Sidebar({ onSearchClick }: SidebarProps) {
   const shortcutLabel = getShortcutLabel(siteMeta.searchShortcut)
+  const activeHref = useActiveSection(navItems)
 
   return (
     <aside className="fixed inset-y-0 left-0 hidden w-[220px] flex-col justify-between border-r border-border p-8 lg:flex">
@@ -19,7 +21,16 @@ function Sidebar({ onSearchClick }: SidebarProps) {
 
         <nav className="flex flex-col gap-3 text-sm">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">
+            <a
+              key={item.href}
+              href={item.href}
+              aria-current={item.href === activeHref ? 'true' : undefined}
+              className={
+                item.href === activeHref
+                  ? 'font-semibold text-primary'
+                  : 'text-muted-foreground hover:text-foreground'
+              }
+            >
               {item.label}
             </a>
           ))}

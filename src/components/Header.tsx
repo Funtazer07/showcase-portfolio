@@ -2,6 +2,7 @@ import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { navItems, siteMeta } from '@/data/portfolioData'
 import { getShortcutLabel } from '@/lib/platform'
+import { useActiveSection } from '@/lib/useActiveSection'
 
 interface HeaderProps {
   onSearchClick: () => void
@@ -9,6 +10,7 @@ interface HeaderProps {
 
 function Header({ onSearchClick }: HeaderProps) {
   const shortcutLabel = getShortcutLabel(siteMeta.searchShortcut)
+  const activeHref = useActiveSection(navItems)
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur lg:hidden">
@@ -19,7 +21,16 @@ function Header({ onSearchClick }: HeaderProps) {
 
         <nav className="hidden gap-6 text-sm text-muted-foreground sm:flex">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="hover:text-foreground">
+            <a
+              key={item.href}
+              href={item.href}
+              aria-current={item.href === activeHref ? 'true' : undefined}
+              className={
+                item.href === activeHref
+                  ? 'font-semibold text-primary'
+                  : 'hover:text-foreground'
+              }
+            >
               {item.label}
             </a>
           ))}
