@@ -33,6 +33,8 @@ export interface HeroContent {
   bio: string
   primaryCtaLabel: string
   secondaryCtaLabel: string
+  photoUrl: string
+  photoAlt: string
 }
 
 export interface AboutContent {
@@ -132,6 +134,8 @@ export const heroContent: HeroContent = {
   bio: 'Frontend Developer with the discipline of a World Karate Champion — building fast, type-safe, accessible interfaces with the same precision and complete follow-through I learned on the mat.',
   primaryCtaLabel: 'View Projects',
   secondaryCtaLabel: 'Get in Touch',
+  photoUrl: '/hero-photo.jpg',
+  photoAlt: 'Andrejs Dvoskins in a karate sparring stance at a competition',
 }
 
 export const aboutContent: AboutContent = {
