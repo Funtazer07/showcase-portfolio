@@ -19,7 +19,10 @@ function Header({ onSearchClick }: HeaderProps) {
           {siteMeta.brand}
         </a>
 
-        <nav className="hidden gap-6 text-sm text-muted-foreground sm:flex">
+        <nav
+          aria-label="Mobile navigation"
+          className="hidden gap-6 text-sm text-muted-foreground sm:flex"
+        >
           {navItems.map((item) => (
             <a
               key={item.href}

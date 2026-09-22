@@ -26,11 +26,19 @@ function About() {
         <div className="border-b border-border px-4 py-2.5 text-xs text-muted-foreground">
           {aboutContent.codeLabel}
         </div>
-        <pre className="overflow-x-auto p-4 font-mono text-[13px] leading-relaxed">
+        <pre
+          tabIndex={0}
+          role="group"
+          aria-label={`${aboutContent.codeLabel} source`}
+          className="overflow-x-auto p-4 font-mono text-[13px] leading-relaxed focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring"
+        >
           <code>
             {codeLines.map((line, index) => (
               <div key={index} className="flex gap-4">
-                <span className="w-4 shrink-0 select-none text-right text-muted-foreground/50">
+                <span
+                  aria-hidden="true"
+                  className="w-4 shrink-0 select-none text-right text-muted-foreground"
+                >
                   {index + 1}
                 </span>
                 <span className="text-card-foreground">{line}</span>
