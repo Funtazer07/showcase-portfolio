@@ -5,7 +5,11 @@ import { heroContent, socialLinks } from '@/data/portfolioData'
 
 function Hero() {
   return (
-    <section id="home" className="scroll-mt-20 px-6 py-28 sm:py-36 lg:py-40">
+    <section
+      id="home"
+      aria-label={`${heroContent.titlePrefix}${heroContent.name}`}
+      className="scroll-mt-20 px-6 py-28 sm:py-36 lg:py-40"
+    >
       <div className="mx-auto flex max-w-5xl flex-col-reverse items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
         <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
           <span className="rounded-full bg-accent px-3 py-1.5 text-sm font-semibold tracking-widest text-accent-foreground uppercase">

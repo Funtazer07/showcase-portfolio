@@ -19,7 +19,7 @@ function Sidebar({ onSearchClick }: SidebarProps) {
           {siteMeta.brand}
         </a>
 
-        <nav className="flex flex-col gap-3 text-sm">
+        <nav aria-label="Desktop navigation" className="flex flex-col gap-3 text-sm">
           {navItems.map((item) => (
             <a
               key={item.href}
