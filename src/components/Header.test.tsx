@@ -1,14 +1,14 @@
-import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { navItems, siteMeta } from '@/data/portfolioData'
+import { render, screen } from '@/test/render'
 import Header from './Header'
 
 describe('Header', () => {
   it('renders the brand link pointing at #home', () => {
     render(<Header onSearchClick={vi.fn()} />)
     const brand = screen.getByRole('link', { name: siteMeta.brand })
-    expect(brand).toHaveAttribute('href', '#home')
+    expect(brand).toHaveAttribute('href', '/#home')
   })
 
   it('renders every nav item as a link to its section', () => {
@@ -16,7 +16,7 @@ describe('Header', () => {
     for (const item of navItems) {
       expect(screen.getByRole('link', { name: item.label })).toHaveAttribute(
         'href',
-        item.href
+        `/${item.href}`
       )
     }
   })
