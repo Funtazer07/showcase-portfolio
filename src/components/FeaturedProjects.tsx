@@ -1,4 +1,5 @@
-import { Check, Code2, ExternalLink } from 'lucide-react'
+import { Check, Code2, ExternalLink, FileText } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { projects, siteMeta } from '@/data/portfolioData'
 
@@ -37,22 +38,33 @@ function FeaturedProjects() {
               ))}
             </ul>
 
-            <div className="mt-auto flex gap-2 pt-2">
-              <Button
-                size="sm"
-                variant="outline"
-                render={<a href={project.repoUrl} target="_blank" rel="noreferrer" />}
-              >
-                <Code2 className="size-4" />
-                {siteMeta.repoLinkLabel}
-              </Button>
-              <Button
-                size="sm"
-                render={<a href={project.demoUrl} target="_blank" rel="noreferrer" />}
-              >
-                <ExternalLink className="size-4" />
-                {siteMeta.demoLinkLabel}
-              </Button>
+            <div className="mt-auto flex flex-wrap gap-2 pt-2">
+              {project.detail && (
+                <Button size="sm" render={<Link to={`/projects/${project.id}`} />}>
+                  <FileText className="size-4" />
+                  {siteMeta.caseStudyLabel}
+                </Button>
+              )}
+              {project.repoUrl && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  render={<a href={project.repoUrl} target="_blank" rel="noreferrer" />}
+                >
+                  <Code2 className="size-4" />
+                  {siteMeta.repoLinkLabel}
+                </Button>
+              )}
+              {project.demoUrl && (
+                <Button
+                  size="sm"
+                  variant={project.detail ? 'outline' : 'default'}
+                  render={<a href={project.demoUrl} target="_blank" rel="noreferrer" />}
+                >
+                  <ExternalLink className="size-4" />
+                  {siteMeta.demoLinkLabel}
+                </Button>
+              )}
             </div>
           </article>
         ))}

@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { navItems, siteMeta, socialLinks } from '@/data/portfolioData'
+import { render, screen } from '@/test/render'
 import Sidebar from './Sidebar'
 
 describe('Sidebar', () => {
@@ -10,7 +10,7 @@ describe('Sidebar', () => {
     for (const item of navItems) {
       expect(screen.getByRole('link', { name: item.label })).toHaveAttribute(
         'href',
-        item.href
+        `/${item.href}`
       )
     }
   })

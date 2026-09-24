@@ -1,6 +1,6 @@
-import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { projects, siteMeta } from '@/data/portfolioData'
+import { render, screen, within } from '@/test/render'
 import FeaturedProjects from './FeaturedProjects'
 
 describe('FeaturedProjects', () => {
@@ -31,20 +31,37 @@ describe('FeaturedProjects', () => {
     }
   })
 
-  it('links repo and demo buttons to the correct URLs in a new tab', () => {
+  it('links repo and demo buttons to the correct URLs in a new tab, when present', () => {
     render(<FeaturedProjects />)
 
     for (const project of projects) {
       const card = screen.getByRole('heading', { name: project.title }).closest('article')
       const scoped = within(card as HTMLElement)
 
-      const repoLink = scoped.getByRole('button', { name: new RegExp(siteMeta.repoLinkLabel.replace('$', '\\$')) })
-      expect(repoLink).toHaveAttribute('href', project.repoUrl)
-      expect(repoLink).toHaveAttribute('target', '_blank')
+      if (project.repoUrl) {
+        const repoLink = scoped.getByRole('button', { name: new RegExp(siteMeta.repoLinkLabel.replace('$', '\\$')) })
+        expect(repoLink).toHaveAttribute('href', project.repoUrl)
+        expect(repoLink).toHaveAttribute('target', '_blank')
+      }
 
-      const demoLink = scoped.getByRole('button', { name: new RegExp(siteMeta.demoLinkLabel.replace('$', '\\$')) })
-      expect(demoLink).toHaveAttribute('href', project.demoUrl)
-      expect(demoLink).toHaveAttribute('target', '_blank')
+      if (project.demoUrl) {
+        const demoLink = scoped.getByRole('button', { name: new RegExp(siteMeta.demoLinkLabel.replace('$', '\\$')) })
+        expect(demoLink).toHaveAttribute('href', project.demoUrl)
+        expect(demoLink).toHaveAttribute('target', '_blank')
+      }
+    }
+  })
+
+  it('links the case study button to the project detail page, when present', () => {
+    render(<FeaturedProjects />)
+
+    for (const project of projects) {
+      if (!project.detail) continue
+      const card = screen.getByRole('heading', { name: project.title }).closest('article')
+      const scoped = within(card as HTMLElement)
+
+      const caseStudyLink = scoped.getByRole('button', { name: siteMeta.caseStudyLabel })
+      expect(caseStudyLink).toHaveAttribute('href', `/projects/${project.id}`)
     }
   })
 })

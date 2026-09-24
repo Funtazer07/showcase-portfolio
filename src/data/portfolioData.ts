@@ -9,11 +9,24 @@ export interface SiteMeta {
   techStackHeading: string
   repoLinkLabel: string
   demoLinkLabel: string
+  caseStudyLabel: string
   cvUrl: string
   cvLabel: string
   searchLabel: string
   searchShortcut: string
   sidebarCopyright: string
+}
+
+export interface ProjectDetailPageContent {
+  backToProjectsLabel: string
+  challengeLabel: string
+  solutionLabel: string
+  resultLabel: string
+  techStackUsedLabel: string
+  nextProjectLabel: string
+  notFoundTitle: string
+  notFoundBody: string
+  backHomeLabel: string
 }
 
 export interface SocialLink {
@@ -84,6 +97,22 @@ export const techCategoryLabels: Record<TechCategory, string> = {
   'tooling-ui': 'Tooling & UI',
 }
 
+export interface ProjectStat {
+  value: string
+  label: string
+}
+
+export interface ProjectDetail {
+  metaBadges: string[]
+  summary: string
+  challenge: string
+  solution: string
+  result: string
+  stats: ProjectStat[]
+  /** Shown in place of a hero screenshot when none can be published (e.g. confidential systems). */
+  screenshotsNote?: string
+}
+
 export interface Project {
   id: string
   title: string
@@ -92,9 +121,12 @@ export interface Project {
   techStack: string[]
   /** Specific engineering solutions worth calling out (state optimization, type safety, test coverage, etc.). */
   highlights: string[]
-  repoUrl: string
-  demoUrl: string
+  /** Public source/demo links, when they exist. Internal or confidential projects may have neither. */
+  repoUrl?: string
+  demoUrl?: string
   featured?: boolean
+  /** Present for projects with a full case-study page at /projects/:id. */
+  detail?: ProjectDetail
 }
 
 export const siteMeta: SiteMeta = {
@@ -103,6 +135,7 @@ export const siteMeta: SiteMeta = {
   techStackHeading: 'Tech Stack',
   repoLinkLabel: '$ source',
   demoLinkLabel: '$ live',
+  caseStudyLabel: '$ details',
   cvUrl: '/resume.pdf',
   cvLabel: 'Resume',
   searchLabel: 'Search',
@@ -121,6 +154,18 @@ export const commandMenuContent: CommandMenuContent = {
   copyEmailLabel: 'Copy email address',
   openGithubLabel: 'Open GitHub profile',
   openLinkedinLabel: 'Open LinkedIn profile',
+}
+
+export const projectDetailPageContent: ProjectDetailPageContent = {
+  backToProjectsLabel: 'Back to projects',
+  challengeLabel: 'The Challenge',
+  solutionLabel: 'The Solution',
+  resultLabel: 'The Result',
+  techStackUsedLabel: 'Tech Stack Used',
+  nextProjectLabel: 'Next project:',
+  notFoundTitle: 'Project not found',
+  notFoundBody: "That project doesn't exist or may have moved.",
+  backHomeLabel: 'Back to home',
 }
 
 export const socialLinks: SocialLinks = {
@@ -185,19 +230,34 @@ export const techStack: TechStackItem[] = [
 
 export const projects: Project[] = [
   {
-    id: 'ecommerce-platform-redesign',
-    title: 'E-commerce Platform Redesign',
+    id: 'stockui-warehouse-improvements',
+    title: 'StockUI Warehouse Workflow Improvements',
     description:
-      'Rebuilt a legacy checkout flow into a fast, accessible React application, cutting cart abandonment.',
-    techStack: ['React', 'TypeScript', 'Stripe'],
+      'Resolved prioritized user-reported issues in a warehouse mobile web app used daily for inbound deliveries, picking, and inventory control — improving workflow clarity while preserving ERP compatibility.',
+    techStack: ['C#', 'React', 'ERP integration'],
     highlights: [
-      'Memoized cart state and colocated Stripe Elements to cut checkout re-renders',
-      'Modeled checkout steps with discriminated unions for full type safety end to end',
-      'Covered critical checkout paths with Testing Library integration tests',
+      'Shipped 8 prioritized fixes end to end, from delivery context to over-delivery handling',
+      'Split Awaiting Labelling into its own screen, separated from the general picking flow',
+      'Worked in Jira-tracked sprints with regular retrospectives alongside the warehouse team',
     ],
-    repoUrl: 'https://github.com/Funtazer07/TODO-ecommerce-platform-redesign',
-    demoUrl: 'https://TODO-ecommerce-platform-redesign.example.com',
     featured: true,
+    detail: {
+      metaBadges: ['Web App', 'Completed', 'Company: Latakko SIA'],
+      summary:
+        'StockUI is a mobile web application warehouse employees rely on throughout the day for article lookup, inbound deliveries, picking, stock movements, and inventory control. This internship focused on resolving the highest-impact, user-reported issues while preserving ERP compatibility, working in Jira-tracked sprints with regular retrospectives.',
+      challenge:
+        'Warehouse staff reported workflow friction, unclear feedback, and synchronization issues between StockUI and the ERP backend — slowing down inbound deliveries, picking, and inventory checks, and adding extra load on the service desk.',
+      solution:
+        'Resolved the highest-impact issues incrementally across sprints: added delivery context and ticket comments, corrected Ready/Unloading status transitions, built a confirmable over-delivery flow, and separated Awaiting Labelling into its own screen with a more reliable label-reprinting flow.',
+      result:
+        'Warehouse employees complete deliveries with less confusion and fewer repeated steps. Status-transition and over-delivery logic are protected by unit tests and validated through code review before release.',
+      stats: [
+        { value: '8', label: 'Prioritized fixes shipped' },
+        { value: '4', label: 'Workflows improved' },
+        { value: 'C# / React', label: 'Tech stack' },
+      ],
+      screenshotsNote: 'Screenshots omitted — internal warehouse system with real client data.',
+    },
   },
   {
     id: 'saas-analytics-dashboard',

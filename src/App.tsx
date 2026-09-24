@@ -1,13 +1,42 @@
 import { useEffect, useState } from 'react'
-import About from '@/components/About'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import CommandMenu from '@/components/CommandMenu'
-import FeaturedProjects from '@/components/FeaturedProjects'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import Hero from '@/components/Hero'
 import Sidebar from '@/components/Sidebar'
-import TechStack from '@/components/TechStack'
 import { Toaster } from '@/components/ui/toast'
+import HomePage from '@/pages/HomePage'
+import ProjectDetailPage from '@/pages/ProjectDetailPage'
+
+interface AppShellProps {
+  commandMenuOpen: boolean
+  onOpenCommandMenu: () => void
+  setCommandMenuOpen: (open: boolean) => void
+}
+
+function AppShell({ commandMenuOpen, onOpenCommandMenu, setCommandMenuOpen }: AppShellProps) {
+  const { pathname } = useLocation()
+  const showSidebar = !pathname.startsWith('/projects/')
+
+  return (
+    <div className="min-h-svh bg-background text-foreground">
+      <Toaster />
+      <CommandMenu open={commandMenuOpen} onOpenChange={setCommandMenuOpen} />
+      {showSidebar && <Sidebar onSearchClick={onOpenCommandMenu} />}
+
+      <div className={showSidebar ? 'lg:pl-[220px]' : undefined}>
+        <Header onSearchClick={onOpenCommandMenu} />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </div>
+  )
+}
 
 function App() {
   const [commandMenuOpen, setCommandMenuOpen] = useState(false)
@@ -24,24 +53,13 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-svh bg-background text-foreground">
-      <Toaster />
-      <CommandMenu open={commandMenuOpen} onOpenChange={setCommandMenuOpen} />
-      <Sidebar onSearchClick={() => setCommandMenuOpen(true)} />
-
-      <div className="lg:pl-[220px]">
-        <Header onSearchClick={() => setCommandMenuOpen(true)} />
-        <Hero />
-
-        <main className="mx-auto max-w-5xl px-6 py-16">
-          <FeaturedProjects />
-          <TechStack />
-          <About />
-        </main>
-
-        <Footer />
-      </div>
-    </div>
+    <BrowserRouter>
+      <AppShell
+        commandMenuOpen={commandMenuOpen}
+        onOpenCommandMenu={() => setCommandMenuOpen(true)}
+        setCommandMenuOpen={setCommandMenuOpen}
+      />
+    </BrowserRouter>
   )
 }
 

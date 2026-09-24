@@ -15,7 +15,7 @@ function Sidebar({ onSearchClick }: SidebarProps) {
   return (
     <aside className="fixed inset-y-0 left-0 hidden w-[220px] flex-col justify-between border-r border-border p-8 lg:flex">
       <div className="flex flex-col gap-8">
-        <a href="#home" className="font-semibold">
+        <a href="/#home" className="font-semibold">
           {siteMeta.brand}
         </a>
 
@@ -23,7 +23,7 @@ function Sidebar({ onSearchClick }: SidebarProps) {
           {navItems.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={`/${item.href}`}
               aria-current={item.href === activeHref ? 'true' : undefined}
               className={
                 item.href === activeHref

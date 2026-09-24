@@ -1,7 +1,12 @@
 import { act, renderHook } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { NavItem } from '@/data/portfolioData'
 import { useActiveSection } from './useActiveSection'
+
+function renderActiveSection(items: NavItem[]) {
+  return renderHook(() => useActiveSection(items), { wrapper: MemoryRouter })
+}
 
 const items: NavItem[] = [
   { label: 'Home', href: '#home' },
@@ -45,9 +50,9 @@ describe('useActiveSection', () => {
     vi.unstubAllGlobals()
   })
 
-  it('defaults to the first item when no sections exist in the DOM', () => {
-    const { result } = renderHook(() => useActiveSection(items))
-    expect(result.current).toBe('#home')
+  it('clears the active section when no sections exist in the DOM', () => {
+    const { result } = renderActiveSection(items)
+    expect(result.current).toBe('')
   })
 
   it('picks the section whose top has crossed the activation line on mount', () => {
@@ -55,7 +60,7 @@ describe('useActiveSection', () => {
     createSection('projects', 500)
     createSection('stack', 1000)
 
-    const { result } = renderHook(() => useActiveSection(items))
+    const { result } = renderActiveSection(items)
 
     expect(result.current).toBe('#home')
   })
@@ -65,7 +70,7 @@ describe('useActiveSection', () => {
     const projects = createSection('projects', 500)
     createSection('stack', 1000)
 
-    const { result } = renderHook(() => useActiveSection(items))
+    const { result } = renderActiveSection(items)
     expect(result.current).toBe('#home')
 
     // simulate scrolling down: home and projects have both crossed the
@@ -86,7 +91,7 @@ describe('useActiveSection', () => {
     createSection('stack', 1000)
 
     const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener')
-    const { unmount } = renderHook(() => useActiveSection(items))
+    const { unmount } = renderActiveSection(items)
 
     unmount()
 
