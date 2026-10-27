@@ -109,8 +109,8 @@ export interface ProjectDetail {
   solution: string
   result: string
   stats: ProjectStat[]
-  /** Shown in place of a hero screenshot when none can be published (e.g. confidential systems). */
-  screenshotsNote?: string
+  /** Hides the hero screenshot area when none can be published (e.g. confidential systems). */
+  hideScreenshots?: boolean
 }
 
 export interface Project {
@@ -256,7 +256,7 @@ export const projects: Project[] = [
         { value: '4', label: 'Workflows improved' },
         { value: 'C# / React', label: 'Tech stack' },
       ],
-      screenshotsNote: 'Screenshots omitted — internal warehouse system with real client data.',
+      hideScreenshots: true,
     },
   },
   {

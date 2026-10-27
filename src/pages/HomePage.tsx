@@ -10,7 +10,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <main className="mx-auto max-w-5xl px-6 py-16">
+      <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
         <FeaturedProjects />
         <TechStack />
         <About />

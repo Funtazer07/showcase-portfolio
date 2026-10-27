@@ -13,10 +13,10 @@ function FeaturedProjects() {
         {projects.map((project) => (
           <article
             key={project.id}
-            className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5 text-card-foreground"
+            className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 sm:p-5 text-card-foreground"
           >
             <h3 className="font-medium">{project.title}</h3>
-            <p className="text-sm text-muted-foreground">{project.description}</p>
+            <p className="text-base text-muted-foreground">{project.description}</p>
 
             <div className="flex flex-wrap gap-1.5">
               {project.techStack.map((tech) => (
@@ -29,7 +29,7 @@ function FeaturedProjects() {
               ))}
             </div>
 
-            <ul className="flex flex-col gap-1.5 text-sm text-muted-foreground">
+            <ul className="flex flex-col gap-1.5 text-base text-muted-foreground">
               {project.highlights.map((highlight) => (
                 <li key={highlight} className="flex items-start gap-2">
                   <Check className="mt-0.5 size-3.5 shrink-0 text-primary" />

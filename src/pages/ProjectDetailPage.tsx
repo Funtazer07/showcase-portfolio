@@ -13,7 +13,7 @@ function ProjectDetailPage() {
 
   if (!project || !project.detail) {
     return (
-      <main className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 py-24 text-center">
+      <main className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 py-24 sm:px-6 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           {projectDetailPageContent.notFoundTitle}
         </h1>
@@ -31,7 +31,7 @@ function ProjectDetailPage() {
   )
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
+    <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
       <a
         href="/#projects"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
@@ -54,32 +54,33 @@ function ProjectDetailPage() {
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {project.title}
         </h1>
-        <p className="max-w-3xl text-[15px] text-muted-foreground">{detail.summary}</p>
+        <p className="max-w-3xl text-lg text-muted-foreground">{detail.summary}</p>
       </div>
 
-      <div className="mt-10 flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-muted/30 py-24 text-center text-sm text-muted-foreground">
-        <ImageOff className="size-6" />
-        {detail.screenshotsNote && <span>{detail.screenshotsNote}</span>}
-      </div>
+      {!detail.hideScreenshots && (
+        <div className="mt-10 flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-muted/30 py-24 text-center text-sm text-muted-foreground">
+          <ImageOff className="size-6" />
+        </div>
+      )}
 
       <div className="mt-10 grid gap-8 border-y border-border py-8 sm:grid-cols-3">
         <div>
           <h2 className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
             {projectDetailPageContent.challengeLabel}
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">{detail.challenge}</p>
+          <p className="mt-3 text-base text-muted-foreground">{detail.challenge}</p>
         </div>
         <div>
           <h2 className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
             {projectDetailPageContent.solutionLabel}
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">{detail.solution}</p>
+          <p className="mt-3 text-base text-muted-foreground">{detail.solution}</p>
         </div>
         <div>
           <h2 className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
             {projectDetailPageContent.resultLabel}
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">{detail.result}</p>
+          <p className="mt-3 text-base text-muted-foreground">{detail.result}</p>
         </div>
       </div>
 

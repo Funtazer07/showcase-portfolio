@@ -28,9 +28,9 @@ function Footer() {
   }
 
   return (
-    <footer id="contact" className="mt-16 scroll-mt-20 border-t border-border py-16 text-center">
+    <footer id="contact" className="mt-16 scroll-mt-20 border-t border-border px-4 py-16 text-center">
       <h2 className="text-2xl font-semibold tracking-tight">{contactContent.heading}</h2>
-      <p className="mt-2 text-sm text-muted-foreground">{contactContent.subheading}</p>
+      <p className="mt-2 text-base text-muted-foreground">{contactContent.subheading}</p>
 
       <button
         type="button"
