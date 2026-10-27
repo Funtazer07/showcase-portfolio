@@ -14,7 +14,7 @@ function Header({ onSearchClick }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur lg:hidden">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
         <a href="/#home" className="font-semibold">
           {siteMeta.brand}
         </a>

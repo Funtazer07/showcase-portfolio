@@ -24,7 +24,7 @@ function AppShell({ commandMenuOpen, onOpenCommandMenu, setCommandMenuOpen }: Ap
       <CommandMenu open={commandMenuOpen} onOpenChange={setCommandMenuOpen} />
       {showSidebar && <Sidebar onSearchClick={onOpenCommandMenu} />}
 
-      <div className={showSidebar ? 'lg:pl-[220px]' : undefined}>
+      <div className={showSidebar ? 'lg:pl-[250px]' : undefined}>
         <Header onSearchClick={onOpenCommandMenu} />
 
         <Routes>

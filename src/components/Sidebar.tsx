@@ -13,7 +13,7 @@ function Sidebar({ onSearchClick }: SidebarProps) {
   const activeHref = useActiveSection(navItems)
 
   return (
-    <aside className="fixed inset-y-0 left-0 hidden w-[220px] flex-col justify-between border-r border-border p-8 lg:flex">
+    <aside className="fixed inset-y-0 left-0 hidden w-[250px] flex-col justify-between border-r border-border p-8 lg:flex">
       <div className="flex flex-col gap-8">
         <a href="/#home" className="font-semibold">
           {siteMeta.brand}
@@ -44,7 +44,7 @@ function Sidebar({ onSearchClick }: SidebarProps) {
         >
           <Search className="size-4" />
           {siteMeta.searchLabel}
-          <kbd className="ml-auto rounded border border-border px-1.5 py-0.5 font-sans text-xs">
+          <kbd className="ml-auto shrink-0 rounded whitespace-nowrap border border-border px-1.5 py-0.5 font-sans text-xs">
             {shortcutLabel}
           </kbd>
         </button>

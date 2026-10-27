@@ -34,7 +34,7 @@ function TechStack() {
           return (
             <div
               key={category}
-              className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6"
+              className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5 sm:p-6"
             >
               <span
                 className={`flex size-8 items-center justify-center rounded-lg text-white ${categoryIconBg[category]}`}
@@ -44,7 +44,7 @@ function TechStack() {
               <h3 className="text-sm font-semibold">
                 {techCategoryLabels[category]}
               </h3>
-              <ul className="flex flex-col gap-2 font-mono text-[13px] text-muted-foreground">
+              <ul className="flex flex-col gap-2 font-mono text-sm text-muted-foreground">
                 {items.map((tech) => (
                   <li key={tech.name} className="flex items-center gap-2">
                     <span aria-hidden className="text-primary">
