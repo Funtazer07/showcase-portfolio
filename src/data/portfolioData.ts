@@ -136,7 +136,7 @@ export const siteMeta: SiteMeta = {
   repoLinkLabel: '$ source',
   demoLinkLabel: '$ live',
   caseStudyLabel: '$ details',
-  cvUrl: '/resume.pdf',
+  cvUrl: `${import.meta.env.BASE_URL}resume.pdf`,
   cvLabel: 'Resume',
   searchLabel: 'Search',
   searchShortcut: 'Ctrl K',
@@ -181,7 +181,7 @@ export const heroContent: HeroContent = {
   bio: 'Frontend Developer with the discipline of a World Karate Champion — building fast, type-safe, accessible interfaces with the same precision and complete follow-through I learned on the mat.',
   primaryCtaLabel: 'View Projects',
   secondaryCtaLabel: 'Get in Touch',
-  photoUrl: '/hero-photo.jpg',
+  photoUrl: `${import.meta.env.BASE_URL}hero-photo.jpg`,
   photoAlt: 'Andrejs Dvoskins in a karate sparring stance at a competition',
 }
 
