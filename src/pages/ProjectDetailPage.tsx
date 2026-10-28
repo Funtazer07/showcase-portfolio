@@ -18,7 +18,7 @@ function ProjectDetailPage() {
           {projectDetailPageContent.notFoundTitle}
         </h1>
         <p className="text-muted-foreground">{projectDetailPageContent.notFoundBody}</p>
-        <a href="/" className="text-sm font-medium text-primary hover:underline">
+        <a href={import.meta.env.BASE_URL} className="text-sm font-medium text-primary hover:underline">
           {projectDetailPageContent.backHomeLabel}
         </a>
       </main>
@@ -33,7 +33,7 @@ function ProjectDetailPage() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
       <a
-        href="/#projects"
+        href={`${import.meta.env.BASE_URL}#projects`}
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="size-4" />

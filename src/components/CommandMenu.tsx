@@ -44,7 +44,7 @@ function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
                 <CommandItem
                   key={item.href}
                   onSelect={() => runCommand(() => {
-                    window.location.href = `/${item.href}`
+                    window.location.href = `${import.meta.env.BASE_URL}${item.href}`
                   })}
                 >
                   {Icon && <Icon />}

@@ -15,7 +15,7 @@ function Header({ onSearchClick }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <a href="/#home" className="font-semibold">
+        <a href={`${import.meta.env.BASE_URL}#home`} className="font-semibold">
           {siteMeta.brand}
         </a>
 
@@ -26,7 +26,7 @@ function Header({ onSearchClick }: HeaderProps) {
           {navItems.map((item) => (
             <a
               key={item.href}
-              href={`/${item.href}`}
+              href={`${import.meta.env.BASE_URL}${item.href}`}
               aria-current={item.href === activeHref ? 'true' : undefined}
               className={
                 item.href === activeHref
